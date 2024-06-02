@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://b2pkv6lgsjclc"]
+
+[ext_resource type="Texture2D" uid="uid://c4yvsdf7m31pb" path="res://icon.svg" id="1_vl254"]
+[ext_resource type="Script" path="res://drag_drop/drag_drop_fsm.gd" id="2_6g8dp"]
+[ext_resource type="Script" path="res://drag_drop/states/idle.gd" id="3_mynld"]
+[ext_resource type="Script" path="res://drag_drop/states/hovering.gd" id="4_u4oxh"]
+[ext_resource type="Script" path="res://drag_drop/states/dragging.gd" id="5_gkiix"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Control" type="TextureRect" parent="."]
+offset_left = 25.0
+offset_top = 242.0
+offset_right = 596.0
+offset_bottom = 416.0
+texture = ExtResource("1_vl254")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 89.0
+offset_top = 263.0
+offset_right = 217.0
+offset_bottom = 391.0
+texture = ExtResource("1_vl254")
+
+[node name="DragNDropFSM" type="Node" parent="TextureRect"]
+script = ExtResource("2_6g8dp")
+initial_state_name = &"idle"
+
+[node name="Idle" type="Node" parent="TextureRect/DragNDropFSM"]
+script = ExtResource("3_mynld")
+state_name = &"idle"
+
+[node name="Hovering" type="Node" parent="TextureRect/DragNDropFSM"]
+script = ExtResource("4_u4oxh")
+state_name = &"hovering"
+
+[node name="Dragging" type="Node" parent="TextureRect/DragNDropFSM"]
+script = ExtResource("5_gkiix")
+state_name = &"dragging"
+
+[node name="AnimationFSM" type="Node" parent="TextureRect"]
