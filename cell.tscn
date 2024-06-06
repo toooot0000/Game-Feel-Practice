@@ -167,8 +167,8 @@ script = ExtResource("9_lllg3")
 
 [node name="EaseMove" type="Node" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("10_m0dtu")
-max_spd = 500.0
-dist_range = 50.0
+max_spd = 2000.0
+dist_range = 200.0
 tolerance = 1
 curveText = SubResource("CurveTexture_du4i8")
 target = NodePath("..")

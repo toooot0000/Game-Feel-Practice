@@ -25,6 +25,7 @@ texture = SubResource("CompressedTexture2D_b2ejx")
 position = Vector2(710, 498)
 curve = SubResource("Curve2D_nwdps")
 script = ExtResource("1_43ni6")
+max_normalized_distance = 0.15
 
 [node name="Cell" parent="HandContainer" instance=ExtResource("2_ex4yg")]
 
