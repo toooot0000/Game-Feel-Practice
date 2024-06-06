@@ -1,0 +1,179 @@
+[gd_scene load_steps=26 format=3 uid="uid://b73t01ekeccw8"]
+
+[ext_resource type="Script" path="res://TextureRect.gd" id="1_bocvf"]
+[ext_resource type="Script" path="res://drag_drop/drag_drop_fsm.gd" id="2_xkmnr"]
+[ext_resource type="Script" path="res://drag_drop/states/idle.gd" id="3_tt6ma"]
+[ext_resource type="Script" path="res://drag_drop/states/hovering.gd" id="4_q1xsj"]
+[ext_resource type="Script" path="res://drag_drop/states/dragging.gd" id="5_g8md1"]
+[ext_resource type="Script" path="res://tween/tween_driver.gd" id="6_4syvj"]
+[ext_resource type="Script" path="res://tween/properties/tween_scale2d.gd" id="7_c45yp"]
+[ext_resource type="Script" path="res://tween/typed/tween_generic.gd" id="8_tg5n7"]
+[ext_resource type="Script" path="res://swing.gd" id="9_lllg3"]
+[ext_resource type="Script" path="res://ease_move.gd" id="10_m0dtu"]
+[ext_resource type="Texture2D" uid="uid://cdjkna6m73jbp" path="res://icon.svg" id="11_b1pxu"]
+
+[sub_resource type="Curve" id="Curve_vlypc"]
+max_value = 1.2
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.436709, 1.17761), 0.0, 0.0, 0, 0, Vector2(0.601266, 0.810448), 0.0, 0.0, 0, 0, Vector2(0.751582, 1.06567), 0.0, 0.0, 0, 0, Vector2(0.901899, 0.926866), 0.0, 0.0, 0, 0, Vector2(1, 0.998508), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="CurveTexture" id="CurveTexture_k73qc"]
+curve = SubResource("Curve_vlypc")
+
+[sub_resource type="Resource" id="Resource_wuh5m"]
+script = ExtResource("7_c45yp")
+start_value = Vector2(1, 1)
+end_value = Vector2(1.4, 1.4)
+duration = 0.2
+offset = 0.0
+available_direction = 1
+target = NodePath("../TextureRect")
+start_value_relation = 0
+end_value_relation = 0
+update_origin_when_play = true
+curve = SubResource("CurveTexture_k73qc")
+
+[sub_resource type="Curve" id="Curve_l8ihc"]
+min_value = -0.2
+_data = [Vector2(0, 0.0014925), 0.0, 0.0, 0, 0, Vector2(0.10443, 0.0507463), 0.0, 0.0, 0, 0, Vector2(0.204114, -0.0522388), 0.0, 0.0, 0, 0, Vector2(0.335443, 0.167164), 0.0, 0.0, 0, 0, Vector2(0.5, -0.2), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="CurveTexture" id="CurveTexture_versx"]
+curve = SubResource("Curve_l8ihc")
+
+[sub_resource type="Resource" id="Resource_g5ksw"]
+script = ExtResource("7_c45yp")
+start_value = Vector2(1, 1)
+end_value = Vector2(1.4, 1.4)
+duration = 0.15
+offset = 0.0
+available_direction = 2
+target = NodePath("../TextureRect")
+start_value_relation = 0
+end_value_relation = 0
+update_origin_when_play = true
+curve = SubResource("CurveTexture_versx")
+
+[sub_resource type="Curve" id="Curve_6do6j"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_l1cjd"]
+curve = SubResource("Curve_6do6j")
+
+[sub_resource type="Resource" id="Resource_rpxba"]
+script = ExtResource("8_tg5n7")
+values = {
+0.6: Color(0, 1, 0, 1),
+"end": Color(1, 1, 1, 1),
+"start": Color(1, 1, 1, 1)
+}
+property_path = ":self_modulate"
+name = &"turn_red"
+is_active = true
+duration = 0.2
+offset = 0.0
+available_direction = 1
+target = NodePath("../TextureRect")
+start_value_relation = 0
+end_value_relation = 0
+curve = SubResource("CurveTexture_l1cjd")
+is_debug = null
+
+[sub_resource type="Curve" id="Curve_wu0so"]
+min_value = -1.0
+_data = [Vector2(0, 0.00236225), 0.0, 0.0, 0, 0, Vector2(0.25, -1), 0.0, 0.0, 0, 0, Vector2(0.751582, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.00373137), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_6maqj"]
+curve = SubResource("Curve_wu0so")
+
+[sub_resource type="Resource" id="Resource_4yc2o"]
+script = ExtResource("8_tg5n7")
+values = {
+"end": 0.1,
+"start": 0.0
+}
+property_path = ":rotation"
+name = &"Shake"
+is_active = true
+duration = 0.1
+offset = 0.0
+available_direction = 3
+target = NodePath("../TextureRect")
+start_value_relation = 0
+end_value_relation = 0
+curve = SubResource("CurveTexture_6maqj")
+is_debug = null
+
+[sub_resource type="Curve" id="Curve_yr4f5"]
+_data = [Vector2(0, 0), 0.0, 2.68201, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_du4i8"]
+curve = SubResource("Curve_yr4f5")
+
+[node name="Cell" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(64, 64)
+script = ExtResource("1_bocvf")
+
+[node name="DragNDropFSM" type="Node" parent="."]
+script = ExtResource("2_xkmnr")
+initial_state_name = &"idle"
+is_active = null
+
+[node name="Idle" type="Node" parent="DragNDropFSM"]
+script = ExtResource("3_tt6ma")
+state_name = &"idle"
+
+[node name="Hovering" type="Node" parent="DragNDropFSM"]
+script = ExtResource("4_q1xsj")
+state_name = &"hovering"
+
+[node name="Dragging" type="Node" parent="DragNDropFSM"]
+script = ExtResource("5_g8md1")
+state_name = &"dragging"
+
+[node name="HoveringTween" type="Node" parent="."]
+script = ExtResource("6_4syvj")
+tweenies = Array[Resource("res://tween/tween_base.gd")]([SubResource("Resource_wuh5m"), SubResource("Resource_g5ksw"), SubResource("Resource_rpxba")])
+
+[node name="ClickingTween" type="Node" parent="."]
+script = ExtResource("6_4syvj")
+tweenies = Array[Resource("res://tween/tween_base.gd")]([SubResource("Resource_4yc2o"), SubResource("Resource_rpxba")])
+
+[node name="Swing" type="Node" parent="."]
+script = ExtResource("9_lllg3")
+
+[node name="EaseMove" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("10_m0dtu")
+max_spd = 500.0
+dist_range = 50.0
+tolerance = 1
+curveText = SubResource("CurveTexture_du4i8")
+target = NodePath("..")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+pivot_offset = Vector2(64, 64)
+texture = ExtResource("11_b1pxu")
+
+[connection signal="mouse_entered" from="." to="HoveringTween" method="play" binds= [true, true]]
+[connection signal="mouse_exited" from="." to="HoveringTween" method="play" binds= [true, false]]
+[connection signal="mouse_just_pressed" from="." to="ClickingTween" method="play" binds= [true, false]]
+[connection signal="end_dragging" from="DragNDropFSM" to="." method="_on_drag_n_drop_fsm_end_dragging"]
+[connection signal="start_dragging" from="DragNDropFSM" to="." method="_on_drag_n_drop_fsm_start_dragging"]

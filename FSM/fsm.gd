@@ -15,7 +15,7 @@ func _ready():
 		complete_state = State.new()
 		complete_state.name = "CompleteState"
 		complete_state.state_name = FSM.FSM_COMPLETE_STATE_NAME
-		$"/root".add_child(complete_state)
+		$"/root".add_child.call_deferred(complete_state)
 	pass
 
 	var state = get_state_by_name(initial_state_name)
@@ -186,7 +186,7 @@ signal did_complete(fsm: FSM)
 
 
 ## return the current state
-func get_current_state():
+func get_current_state() -> State:
 	return _current_state
 
 ## get the state by a state_name

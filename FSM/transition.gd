@@ -17,6 +17,20 @@ static func transition_with_name_and_did_transition(name: StringName, did_transi
 	transition.did_transition = did_transition
 	return transition
 
+
+func with_did_transition(callable: Callable) -> Transition:
+	var ret = clone()
+	ret.did_transition = callable
+	return ret
+
+func clone() -> Transition:
+	var ret = Transition.new()
+	ret.target_name = target_name
+	ret.will_transition = will_transition
+	ret.in_transition = in_transition
+	ret.did_transition = did_transition
+	return ret
+
 #!SECTION
 
 ## The name for the target state name

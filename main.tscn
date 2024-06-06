@@ -1,10 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://b2pkv6lgsjclc"]
+[gd_scene load_steps=5 format=3 uid="uid://b2pkv6lgsjclc"]
 
-[ext_resource type="Texture2D" uid="uid://c4yvsdf7m31pb" path="res://icon.svg" id="1_vl254"]
-[ext_resource type="Script" path="res://drag_drop/drag_drop_fsm.gd" id="2_6g8dp"]
-[ext_resource type="Script" path="res://drag_drop/states/idle.gd" id="3_mynld"]
-[ext_resource type="Script" path="res://drag_drop/states/hovering.gd" id="4_u4oxh"]
-[ext_resource type="Script" path="res://drag_drop/states/dragging.gd" id="5_gkiix"]
+[ext_resource type="Script" path="res://hand_container.gd" id="1_43ni6"]
+[ext_resource type="PackedScene" uid="uid://b73t01ekeccw8" path="res://cell.tscn" id="2_ex4yg"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b2ejx"]
+load_path = "res://.godot/imported/icon.svg-03c03cf71119bffd264b2ad058cd0062.ctex"
+
+[sub_resource type="Curve2D" id="Curve2D_nwdps"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -257, -2, -97.515, 19.0273, 97.515, -19.0273, -99, -65, -101.083, -21.4057, 101.083, 21.4057, 190, -66, 0, 0, 0, 0, 345, 2)
+}
+point_count = 4
 
 [node name="Node2D" type="Node2D"]
 
@@ -13,29 +19,21 @@ offset_left = 25.0
 offset_top = 242.0
 offset_right = 596.0
 offset_bottom = 416.0
-texture = ExtResource("1_vl254")
+texture = SubResource("CompressedTexture2D_b2ejx")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_left = 89.0
-offset_top = 263.0
-offset_right = 217.0
-offset_bottom = 391.0
-texture = ExtResource("1_vl254")
+[node name="HandContainer" type="Path2D" parent="."]
+position = Vector2(710, 498)
+curve = SubResource("Curve2D_nwdps")
+script = ExtResource("1_43ni6")
 
-[node name="DragNDropFSM" type="Node" parent="TextureRect"]
-script = ExtResource("2_6g8dp")
-initial_state_name = &"idle"
+[node name="Cell" parent="HandContainer" instance=ExtResource("2_ex4yg")]
 
-[node name="Idle" type="Node" parent="TextureRect/DragNDropFSM"]
-script = ExtResource("3_mynld")
-state_name = &"idle"
+[node name="Cell2" parent="HandContainer" instance=ExtResource("2_ex4yg")]
 
-[node name="Hovering" type="Node" parent="TextureRect/DragNDropFSM"]
-script = ExtResource("4_u4oxh")
-state_name = &"hovering"
+[node name="Cell3" parent="HandContainer" instance=ExtResource("2_ex4yg")]
 
-[node name="Dragging" type="Node" parent="TextureRect/DragNDropFSM"]
-script = ExtResource("5_gkiix")
-state_name = &"dragging"
+[node name="Cell4" parent="HandContainer" instance=ExtResource("2_ex4yg")]
 
-[node name="AnimationFSM" type="Node" parent="TextureRect"]
+[node name="Cell5" parent="HandContainer" instance=ExtResource("2_ex4yg")]
+
+[node name="Cell6" parent="HandContainer" instance=ExtResource("2_ex4yg")]

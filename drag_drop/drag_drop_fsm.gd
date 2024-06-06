@@ -1,5 +1,8 @@
 extends FSM
 
+signal start_dragging
+signal end_dragging
+
 func _ready():
 	super._ready()
 	var parent = get_parent()
@@ -14,12 +17,14 @@ var _config = {
 	"hovering": func(_fsm: FSM, curState: State):
 		match curState.complete_type:
 			DragDrop_Hovering.COMPLETE_TYPE.MOUSE_BUTTON_DOWN:
-				return "dragging"
+				return Transition.transition_with_name("dragging").with_did_transition(func(_1, _2, _3): start_dragging.emit())
 			_:
 				return "idle"
 		pass,
 	"dragging": func(_fsm: FSM, _curState: State):
-		return "hovering"
+		return Transition.transition_with_name("hovering").with_did_transition(
+			func(_1, _2, _3): 
+				end_dragging.emit())
 }
 
 ## Get the config of the state transition

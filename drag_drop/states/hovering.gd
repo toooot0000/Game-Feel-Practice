@@ -15,9 +15,10 @@ func step_out(to: State):
 
 ## Update method. Called every frame
 func update(delta):
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+	if Input.is_action_just_pressed("mouse_button_left"):
 		complete_with_type(COMPLETE_TYPE.MOUSE_BUTTON_DOWN)
 	pass
 
 func _on_mouse_exited():
-	complete_with_type(COMPLETE_TYPE.MOUSE_EXITED)
+	if fsm.is_active &&is_current_state():
+		complete_with_type(COMPLETE_TYPE.MOUSE_EXITED)
