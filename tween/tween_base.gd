@@ -4,6 +4,7 @@ class_name Tweeny
 
 
 enum ValueRelation { ABSOLUTE, RELATIVE_TO_ORIGIN, RELATIVE_TO_START}
+enum EndValueType { ORIGIN, START, END, CURRENT }
 
 @export_group("Common")
 @export var name :StringName = "Random"
@@ -15,6 +16,7 @@ enum ValueRelation { ABSOLUTE, RELATIVE_TO_ORIGIN, RELATIVE_TO_START}
 
 @export_group("Parameter")
 @export_flags("top_to_bottom:1", "bottom_to_top:2") var available_direction: int = 3
+@export var end_value_type := EndValueType.END
 @export var target: NodePath
 @export var start_value_relation: ValueRelation
 @export var end_value_relation: ValueRelation
@@ -84,3 +86,24 @@ func _lerp(start, end, k):
 
 func _execute_action(node: Node, property_path: NodePath, value):
 	node.set_indexed(property_path, value)
+
+func set_value_on_stop(driver: TweenyDriver):
+	var node = _get_target_node(driver)
+	var k = 1
+	if curve:
+		k = curve.curve.sample_baked(k)
+	var __start = get_related_value(_start, start_value_relation)
+	var __end = get_related_value(_end, end_value_relation)
+	var value
+
+	match end_value_type:
+		EndValueType.CURRENT:
+			return
+		EndValueType.END:
+			value = _lerp(__start, __end, k)
+		EndValueType.START:
+			value = _origin_on_start
+		EndValueType.ORIGIN:
+			value = _origin
+	
+	node.set_indexed(_property_path, value)

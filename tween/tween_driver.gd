@@ -56,6 +56,7 @@ func initialize():
 
 
 func play(from_start: bool = false, top_to_bottom: bool = true):
+	if is_playing: stop()
 	is_playing = true
 	direction = PlayDirection.TOP_TO_BOTTOM if top_to_bottom else PlayDirection.BOTTOM_TO_TOP
 	_update_duration()
@@ -72,8 +73,9 @@ func pause():
 func stop():
 	is_playing = false
 	current_ratio = 0
+	for t in tweenies:
+		t.set_value_on_stop(self)
 	pass
-
 
 
 #!SECTION Public

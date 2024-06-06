@@ -24,14 +24,17 @@ curve = SubResource("Curve_vlypc")
 script = ExtResource("7_c45yp")
 start_value = Vector2(1, 1)
 end_value = Vector2(1.4, 1.4)
+name = &"Random"
+is_active = true
 duration = 0.2
 offset = 0.0
 available_direction = 1
+end_value_type = 2
 target = NodePath("../TextureRect")
 start_value_relation = 0
 end_value_relation = 0
-update_origin_when_play = true
 curve = SubResource("CurveTexture_k73qc")
+is_debug = false
 
 [sub_resource type="Curve" id="Curve_l8ihc"]
 min_value = -0.2
@@ -45,14 +48,17 @@ curve = SubResource("Curve_l8ihc")
 script = ExtResource("7_c45yp")
 start_value = Vector2(1, 1)
 end_value = Vector2(1.4, 1.4)
+name = &"Random"
+is_active = true
 duration = 0.15
 offset = 0.0
 available_direction = 2
+end_value_type = 2
 target = NodePath("../TextureRect")
 start_value_relation = 0
 end_value_relation = 0
-update_origin_when_play = true
 curve = SubResource("CurveTexture_versx")
+is_debug = false
 
 [sub_resource type="Curve" id="Curve_6do6j"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -71,14 +77,15 @@ values = {
 property_path = ":self_modulate"
 name = &"turn_red"
 is_active = true
-duration = 0.2
+duration = 0.1
 offset = 0.0
 available_direction = 1
+end_value_type = 2
 target = NodePath("../TextureRect")
 start_value_relation = 0
 end_value_relation = 0
 curve = SubResource("CurveTexture_l1cjd")
-is_debug = null
+is_debug = false
 
 [sub_resource type="Curve" id="Curve_wu0so"]
 min_value = -1.0
@@ -100,11 +107,12 @@ is_active = true
 duration = 0.1
 offset = 0.0
 available_direction = 3
+end_value_type = 2
 target = NodePath("../TextureRect")
 start_value_relation = 0
 end_value_relation = 0
 curve = SubResource("CurveTexture_6maqj")
-is_debug = null
+is_debug = false
 
 [sub_resource type="Curve" id="Curve_yr4f5"]
 _data = [Vector2(0, 0), 0.0, 2.68201, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
